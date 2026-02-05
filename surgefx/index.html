@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#clients">Clients</a></li>
+            <li><a href="#my-work">My Work</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h1>SurgeFX</h1>
+        <p>Here you can find information about my work and experience.</p>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <p>Views generated: 200k</p>
+        <p>1 year of experience</p>
+    </section>
+
+    <section id="clients">
+        <h2>Clients</h2>
+        <div class="clients-container">
+            <div class="clients-loop">
+                <!-- Client loop will be populated via JavaScript -->
+            </div>
+            <div class="client-popup" id="client-popup">
+                <span class="close-btn" id="close-btn">&times;</span>
+                <h3 id="client-name"></h3>
+                <p id="client-description"></p>
+                <p id="client-occupation"></p>
+                <img id="client-pfp" src="" alt="Client Profile Picture">
+            </div>
+        </div>
+    </section>
+
+    <section id="my-work">
+        <h2>My Work</h2>
+        <div class="work-gallery">
+            <!-- Work images will be populated via JavaScript -->
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2>Reviews</h2>
+        <div class="review-list">
+            <!-- Review list will be populated via JavaScript -->
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
