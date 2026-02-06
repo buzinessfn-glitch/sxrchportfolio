@@ -1,0 +1,226 @@
+:root {
+    --light-blue: #add8e6;
+    --dark-blue: #00008b;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-blue);
+    color: #333;
+    cursor: none; /* Hide default cursor for the custom one */
+    overflow-x: hidden;
+}
+
+/* --- Custom Cursor --- */
+.cursor {
+    width: 20px;
+    height: 20px;
+    background-color: var(--dark-blue);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+}
+
+/* --- Navigation --- */
+nav {
+    background-color: var(--dark-blue);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: none; /* Ensure custom cursor is seen */
+}
+
+nav a:hover {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    transform: scale(1.1);
+}
+
+/* --- Sections --- */
+section {
+    padding: 4rem 2rem;
+    min-height: 80vh; /* varied height for scroll feel */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0; /* For scroll animation */
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+h1 { font-size: 4rem; color: var(--dark-blue); margin-bottom: 0.5rem; }
+h2 { font-size: 2.5rem; color: var(--dark-blue); margin-bottom: 2rem; border-bottom: 3px solid var(--dark-blue); padding-bottom: 10px; }
+
+#home, #clients, #reviews { background-color: var(--light-blue); }
+#experience, #my-work { background-color: var(--white); }
+
+/* --- Experience --- */
+.stat-box {
+    margin: 1rem;
+    padding: 1rem;
+}
+.stat-number { font-size: 3rem; font-weight: bold; color: var(--dark-blue); margin: 0; }
+.stat-label { font-size: 1.2rem; color: #555; }
+
+/* --- Clients (Infinite Loop) --- */
+.clients-container {
+    width: 100%;
+    max-width: 1000px;
+    overflow: hidden; /* Hides the scrollbar */
+    position: relative;
+    padding: 2rem 0;
+}
+
+.clients-loop {
+    display: flex;
+    gap: 20px;
+    /* Duration 30s, linear timing, infinite loop */
+    animation: scroll 30s linear infinite; 
+    width: max-content; /* Ensure width fits all children */
+}
+
+/* Pause animation on hover so you can click */
+.clients-loop:hover {
+    animation-play-state: paused;
+}
+
+.client-item {
+    width: 200px;
+    height: 260px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: none;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.client-item:hover { transform: scale(1.05); }
+.client-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--light-blue); }
+.client-item h3 { margin: 10px 0 5px 0; font-size: 1.1rem; }
+.client-item p { font-size: 0.9rem; color: #666; margin: 0; }
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Move half way because we duplicate list */
+}
+
+/* Client Popup */
+.client-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 2000;
+    width: 300px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+.client-popup.active { display: flex; }
+.client-popup img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; }
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 2rem; cursor: pointer; }
+
+/* --- My Work (Gallery Frame) --- */
+.work-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    width: 80%;
+    max-width: 900px;
+    max-height: 500px; /* Limits height to create internal scroll */
+    overflow-y: auto; /* Adds scrollbar inside the frame */
+    padding: 15px;
+    background-color: #f0f8ff;
+    border: 2px solid var(--dark-blue);
+    border-radius: 10px;
+}
+
+.work-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s;
+    display: block;
+}
+.work-item img:hover { transform: scale(1.02); }
+
+/* --- Reviews --- */
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 700px;
+}
+
+.review-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    text-align: center;
+}
+
+.review-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 1rem; }
+.review-header img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 10px; }
+.stars { color: gold; font-size: 1.2rem; margin: 5px 0; }
+.review-text { font-style: italic; color: #555; margin-bottom: 1rem; }
+
+/* Shared Button Style */
+button.check-out-btn {
+    background-color: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+button.check-out-btn:hover { background-color: var(--light-blue); color: var(--dark-blue); }
